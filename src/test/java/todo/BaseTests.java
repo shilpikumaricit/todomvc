@@ -25,13 +25,11 @@ public class BaseTests {
 
     private static void loadTestProperties(){
         try (InputStream input = new FileInputStream("src/test/resources/config.properties")) {
-
             Properties prop = new Properties();
             prop.load(input);
-            System.out.println(prop.getProperty("url"));
-            System.out.println(prop.getProperty("webdriver.chrome.driver"));
-            System.setProperty("webdriver.chrome.driver","/Users/sriman/Downloads/singtelAssignment/todomvc/lib/chromedriver");
             System.setProperty("url",prop.getProperty("url"));
+            System.setProperty("webdriver.chrome.driver", prop.getProperty("webdriver.chrome.driver"));
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }

@@ -4,7 +4,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @Cucumber.Options(
         glue = {"todo.stepDefinitions"},
-        features = {"src/test/resources/manageTodo.feature"}
+        features = {"src/test/resources/features/manageTodo.feature"}
 )
 public class ManageTodoTestRunner {
 }
