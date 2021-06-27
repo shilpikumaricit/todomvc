@@ -49,7 +49,7 @@ public class ManageTodoStepDefs extends BasePage {
 
     @Then("^\"([^\"]*)\" is removed from the Active todo list")
     public void isRemovedFromTheFirstResults(String expectedResult) {
-        Assert.assertFalse(expectedResult + " was found in the first ",
+        Assert.assertTrue(expectedResult + " was found in the first ",
                 this.homePage.isRemovedFromTheFirstResults(expectedResult));
     }
 
