@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 public class HomePage extends BasePage {
 
     public static final String URL = "url";
-    public static final String TODO_ADDED_INPUT = "//label[contains(text(),'Meeting')]";
+    public static final String TODO_ADDED_INPUT = "//ul[@class='todo-list']/li";
 
     @FindBy(xpath = "//header/input[1]")
     private WebElement todoInput;
@@ -48,6 +48,15 @@ public class HomePage extends BasePage {
                 .anyMatch(index -> this.results.get(index).getText().contains(expectedResult));
     }
 
+    public boolean isDisplayedWithResults(int nbOfResultsToSearch) {
+        allButton.click();
+        return results.size() == nbOfResultsToSearch;
+    }
+
+    public void clickOnAllButton() {
+        allButton.click();
+    }
+
     public void clickOnActiveButton() {
         activeButton.click();
     }
@@ -66,5 +75,14 @@ public class HomePage extends BasePage {
         activeButton.click();
         return results.stream().filter(we -> we.getText().equals(expectedResult)).count() == 1;
 
+    }
+
+    public boolean verifyNumberOfTodo(int nbOfResultsToSearch, String actionButton) {
+        if(actionButton.equals("Active")){
+            activeButton.click();
+        }else if(actionButton.equals("All")){
+            allButton.click();
+        }
+        return results.size() == nbOfResultsToSearch;
     }
 }

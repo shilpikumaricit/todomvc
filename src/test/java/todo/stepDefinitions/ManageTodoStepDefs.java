@@ -31,6 +31,17 @@ public class ManageTodoStepDefs extends BasePage {
                 this.homePage.isInResults(expectedResult, nbOfResultsToSearch));
     }
 
+    @Then("^User is displayed with \"([^\"]*)\" results$")
+    public void isDisplayedWithResults(int nbOfResultsToSearch) {
+        Assert.assertTrue( nbOfResultsToSearch + " results.",
+                this.homePage.isDisplayedWithResults(nbOfResultsToSearch));
+    }
+
+    @Then("user click on All button")
+    public void clickOnAllButton() {
+        this.homePage.clickOnAllButton();
+    }
+
     @Then("user click on Active button")
     public void clickOnActiveButton() {
         this.homePage.clickOnActiveButton();
@@ -51,6 +62,11 @@ public class ManageTodoStepDefs extends BasePage {
     public void isRemovedFromTheFirstResults(String expectedResult) {
         Assert.assertTrue(expectedResult + " was found in the first ",
                 this.homePage.isRemovedFromTheFirstResults(expectedResult));
+    }
+
+    @Then("^\"([^\"]*)\" todo is displayed in \"([^\"]*)\" results$")
+    public void verifyNumberOfTodo( int nbOfResultsToSearch, String actionButton) {
+        Assert.assertTrue(this.homePage.verifyNumberOfTodo(nbOfResultsToSearch, actionButton));
     }
 
 }
