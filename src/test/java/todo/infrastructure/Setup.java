@@ -14,6 +14,10 @@ import java.util.concurrent.TimeUnit;
 
 public class Setup {
 
+    public static final String WEBDRIVER_CHROME_DRIVER = "webdriver.chrome.driver";
+    public static final String CONFIG_PROPERTIES = "src/test/resources/config/config.properties";
+    public static final String URL = "url";
+    public static final String CHROME = "chrome";
     public static WebDriver driver;
 
     @Before
@@ -22,10 +26,10 @@ public class Setup {
         String browser = System.getProperty("browser");
         loadTestProperties();
         if (browser == null) {
-            browser = "chrome";
+            browser = CHROME;
         }
         switch (browser) {
-            case "chrome":
+            case CHROME:
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("['start-maximized']");
                 driver = new ChromeDriver(chromeOptions);
@@ -41,11 +45,11 @@ public class Setup {
     }
 
     private static void loadTestProperties(){
-        try (InputStream input = new FileInputStream("src/test/resources/config.properties")) {
+        try (InputStream input = new FileInputStream(CONFIG_PROPERTIES)) {
             Properties prop = new Properties();
             prop.load(input);
-            System.setProperty("url",prop.getProperty("url"));
-            System.setProperty("webdriver.chrome.driver", prop.getProperty("webdriver.chrome.driver"));
+            System.setProperty(URL,prop.getProperty(URL));
+            System.setProperty(WEBDRIVER_CHROME_DRIVER, prop.getProperty(WEBDRIVER_CHROME_DRIVER));
 
         } catch (IOException ex) {
             ex.printStackTrace();
