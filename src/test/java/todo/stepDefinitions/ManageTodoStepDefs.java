@@ -16,7 +16,7 @@ public class ManageTodoStepDefs extends BasePage {
     }
 
     @Given("User navigates to the website")
-    public void navigateToWebsite(){
+    public void navigateToWebsite() {
         homePage.goToHomePage();
     }
 
@@ -33,7 +33,7 @@ public class ManageTodoStepDefs extends BasePage {
 
     @Then("^User is displayed with \"([^\"]*)\" results$")
     public void isDisplayedWithResults(int nbOfResultsToSearch) {
-        Assert.assertTrue( nbOfResultsToSearch + " results.",
+        Assert.assertTrue(nbOfResultsToSearch + " results.",
                 this.homePage.isDisplayedWithResults(nbOfResultsToSearch));
     }
 
@@ -49,7 +49,7 @@ public class ManageTodoStepDefs extends BasePage {
 
     @Then("^\"([^\"]*)\" is displayed in the results")
     public void isDisplayedInTheResults(String expectedResult) {
-        Assert.assertTrue(expectedResult + " was found in the first "  + " results.",
+        Assert.assertTrue(expectedResult + " was found in the first " + " results.",
                 this.homePage.isDisplayedInTheResults(expectedResult));
     }
 
@@ -65,7 +65,7 @@ public class ManageTodoStepDefs extends BasePage {
     }
 
     @Then("^\"([^\"]*)\" todo is displayed in \"([^\"]*)\" results$")
-    public void verifyNumberOfTodo( int nbOfResultsToSearch, String actionButton) {
+    public void verifyNumberOfTodo(int nbOfResultsToSearch, String actionButton) {
         Assert.assertTrue(this.homePage.verifyNumberOfTodo(nbOfResultsToSearch, actionButton));
     }
 

@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,11 +21,13 @@ public class Setup {
     public static final String URL = "url";
     public static final String CHROME = "chrome";
     public static WebDriver driver;
+    private static final Logger LOG = LoggerFactory.getLogger(Setup.class);
 
     @Before
     public void setWebDriver() {
 
         String browser = System.getProperty("browser");
+        LOG.info(browser);
         loadTestProperties();
         if (browser == null) {
             browser = CHROME;
@@ -39,7 +43,9 @@ public class Setup {
                 driver.manage().window().maximize();
                 break;
             default:
+                LOG.error("Browser \"" + browser + "\" isn't supported.");
                 throw new IllegalArgumentException("Browser \"" + browser + "\" isn't supported.");
+
         }
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
@@ -48,7 +54,9 @@ public class Setup {
         try (InputStream input = new FileInputStream(CONFIG_PROPERTIES)) {
             Properties prop = new Properties();
             prop.load(input);
+            LOG.info(prop.getProperty(URL));
             System.setProperty(URL,prop.getProperty(URL));
+            LOG.info(prop.getProperty(WEBDRIVER_CHROME_DRIVER));
             System.setProperty(WEBDRIVER_CHROME_DRIVER, prop.getProperty(WEBDRIVER_CHROME_DRIVER));
 
         } catch (IOException ex) {
