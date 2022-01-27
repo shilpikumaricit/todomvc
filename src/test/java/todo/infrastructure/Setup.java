@@ -47,6 +47,8 @@ public class Setup {
                 throw new IllegalArgumentException("Browser \"" + browser + "\" isn't supported.");
 
         }
+        LOG.error("Browser " + browser + "\" isn't supported.");
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 

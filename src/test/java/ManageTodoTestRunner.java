@@ -1,8 +1,6 @@
-import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
-import org.junit.runner.RunWith;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
 
-@RunWith(Cucumber.class)
 @CucumberOptions(
         plugin = {"pretty",
                 "json:target/cucumber_json_reports/manageTodo.json",
@@ -11,5 +9,5 @@ import org.junit.runner.RunWith;
         glue = {"todo.stepDefinitions", "todo.infrastructure"},
         features = {"src/test/resources/features/manageTodo.feature"}
 )
-public class ManageTodoTestRunner {
+public class ManageTodoTestRunner extends AbstractTestNGCucumberTests {
 }
